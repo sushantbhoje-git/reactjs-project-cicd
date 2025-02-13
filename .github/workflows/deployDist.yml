@@ -19,6 +19,11 @@ jobs:
                 node-version: '20'
             - name: Print the version
               run: node -v
+            - name: Cache Dependencies
+             run: actions/cache@v4
+             with:
+                path: ~/.npm
+                key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
             - name: Install Dependencies
               run: npm ci   #CI - Clean Install for automated updated environments to pick up
             - name: Run Test Cases
@@ -33,7 +38,11 @@ jobs:
               uses: actions/setup-node@v4
               with:
                 node-version: '20'
-
+            - name: Cache Dependencies
+              run: actions/cache@v4
+              with:
+                path: ~/.npm
+                key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
             - name: Install Dependencies
               run: npm ci   #CI - Clean Install for automated updated environments to pick up
             - name: Build Project
