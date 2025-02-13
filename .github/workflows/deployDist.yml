@@ -20,8 +20,8 @@ jobs:
             - name: Print the version
               run: node -v
             - name: Cache Dependencies
-             run: actions/cache@v4
-             with:
+              uses: actions/cache@v4
+              with:
                 path: ~/.npm
                 key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
             - name: Install Dependencies
@@ -39,7 +39,7 @@ jobs:
               with:
                 node-version: '20'
             - name: Cache Dependencies
-              run: actions/cache@v4
+              uses: actions/cache@v4
               with:
                 path: ~/.npm
                 key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
